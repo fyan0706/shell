@@ -1,0 +1,6 @@
+git clone http://192.168.20.146/sce/tool.git # 需要用户名密码
+cd tool/
+git branch # 查看现在的branch
+git checkout develop # 切换到branch:develop
+git branch # 查看现在的branch
+git pull origin develop # 更新新branch下代码(不一定需要)
