@@ -4,3 +4,11 @@ git branch # 查看现在的branch
 git checkout develop # 切换到branch:develop
 git branch # 查看现在的branch
 git pull origin develop # 更新新branch下代码(不一定需要)
+
+checkin:
+git pull
+git status
+git add precise_coverage.sh guest.sh
+git status
+git commit -m "go through the total script"
+git push
