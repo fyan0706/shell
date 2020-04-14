@@ -1,0 +1,18 @@
+0. $ gcc --version
+	gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-11)
+1. download: http://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.xz
+2. tar Jxvf
+3. 下载依赖文件
+	./contrib/download_prerequisites -- 等, 过程没有进度条,保证gcc.gnu.org可ping通即可
+4. mkdir  build  &&  cd build
+5. ../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib
+	–enable-languages表示你要让你的gcc支持那些语言，–disable-multilib不生成编译为其他平台可执行代码的交叉编译器。–disable-checking生成的编译器在编译过程中不做额外检查，也可以使用*–enable-checking=xxx*来增加一些检查
+	注: 必须有-disable-multilib, 否则configure会出错
+	config.log  config.status  Makefile  serdep.tmp
+6. make -j32
+7. sudo make install
+8. gcc -v   如果看到的还是之前的版本尝试下面方法
+	/usr/local/bin/gcc -v     查看是否是安装版本
+	最后添加环境变量（这是零时方法）
+	export PATH=/usr/local/bin:$PATH
+	然后再 gcc -v查看
