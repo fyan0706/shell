@@ -1,0 +1,7 @@
+修改时间:date -s "2019-06-25 20:13:00"
+
+查看硬件时间:hwclock --show
+
+本地时间 → 硬件时间(date → hwclock):timedatectl set-local-rtc 1
+
+硬件时间 → 系统时间(dhwclock → date):hwclock --hctosys
