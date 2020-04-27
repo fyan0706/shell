@@ -1,0 +1,1 @@
+试过一次, 通过文件/etc/sysconfig/network-scripts/ifcfg-xxx 不生效, 通过图形界面(右上角)配置可以生效.
