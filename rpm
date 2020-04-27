@@ -1,0 +1,3 @@
+解压RPM包:
+RPM包括是使用cpio格式打包的，因此可以先转成cpio然后解压，如下所示：
+rpm2cpio xxx.rpm | cpio -div
