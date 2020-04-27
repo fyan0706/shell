@@ -1,1 +1,13 @@
-试过一次, 通过文件/etc/sysconfig/network-scripts/ifcfg-xxx 不生效, 通过图形界面(右上角)配置可以生效.
+试过一次, 通过文件/etc/sysconfig/network-scripts/ifcfg-xxx 不生效, 
+DEVICE=enp2s0f2
+HWADDR=00:00:00:00:03:15
+TYPE=Ethernet
+UUID=bafe7790-0e2f-4fde-963d-fd65e0858adb
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=static
+IPADDR=192.168.38.231
+NETMASK=255.255.255.0
+GATEWAY=192.168.38.1
+
+通过图形界面(右上角)配置可以生效.
