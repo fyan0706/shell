@@ -11,3 +11,8 @@ NETMASK=255.255.255.0
 GATEWAY=192.168.38.1
 
 通过图形界面(右上角)配置可以生效.
+
+CentOS网络配置文件中UUID参数释疑
+# uuidgen ens33
+重启网络，验证新获得的UUID号
+[root@localhost ~]# service network restart
