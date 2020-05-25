@@ -12,3 +12,31 @@ git add precise_coverage.sh guest.sh
 git status
 git commit -m "go through the total script"
 git push
+
+git 免用户名/密码
+查看配置
+git config user.name
+git config user.email
+修改
+git config --global user.name "abc(新的用户名)"
+git config --global user.email "abc@qq.com(新的邮箱)"
+git config --global user.password"123456(新的密码)"
+弄掉密码
+git config --system --unset credential.helper
+重新存储密码
+git config --global credential.helper store
+------------------------------------
+vim ~/.gitconfig 
+在配置加入如下
+[credential]
+helper = store
+例============================
+cat ~/.gitconfig 
+[user]
+	name = yanf
+	email = yan_feng@tsinghua.edu.cn
+	password = aaaaaaaaaa
+[push]
+	default = matching
+[credential]
+	helper = store
