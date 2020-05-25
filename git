@@ -40,3 +40,5 @@ cat ~/.gitconfig
 	default = matching
 [credential]
 	helper = store
+
+git diff
