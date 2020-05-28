@@ -2,9 +2,13 @@
 1. cp a centos iso to the machine:   wget ftp://192.168.38.222/os_iso/CentOS-7-x86_64-DVD-1708.iso
 2. mount -t iso9660 -o loop 50_iso/CentOS-7-x86_64-DVD-1708.iso mnt_iso/    注意: 参数"-t iso9660 -o loop"必须加
 3. /etc/yum.repos.d下加入文件:server.repo    内容如下:
-  [server]
-  name=CentOS-$releasever - Media
-  baseurl=file:///mnt/mnt_iso/
-  gpgcheck=1
-  enabled=1
-  gpgkey=file:///mnt/mnt_iso/RPM-GPG-KEY-CentOS-7
+[server]
+name=CentOS-$releasever - Media
+baseurl=file:///mnt/mnt_iso/
+gpgcheck=1
+enabled=1
+gpgkey=file:///mnt/mnt_iso/RPM-GPG-KEY-CentOS-7
+
+Note:
+1. 注意server.repo的格式细节, 每行开头不能有空格!
+2. 将现有其他的 *.repo文件移除.
