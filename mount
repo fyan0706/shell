@@ -1,0 +1,11 @@
+automount
+
+/etc/fstab
+/dev/mapper/rhel-root   /                       xfs     defaults        0 0
+UUID=35594140-8a32-4168-9173-2d607a2f0db2 /boot                   xfs     defaults        0 0
+UUID=96D8-50B3          /boot/efi               vfat    umask=0077,shortname=winnt 0 0
+/dev/mapper/rhel-home   /home                   xfs     defaults        0 0
+/dev/mapper/rhel-swap   swap                    swap    defaults        0 0
+UUID=a0739e6f-50eb-462f-abeb-e25ba06cbdd7 /mnt  ext4    defaults        1 1
+
+UUID查询:blkid
