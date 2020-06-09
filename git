@@ -12,7 +12,7 @@ git add precise_coverage.sh guest.sh
 git status
 git commit -m "go through the total script"
 git push
-
+*****************************************
 git 免用户名/密码
 查看配置
 git config user.name
@@ -40,5 +40,16 @@ cat ~/.gitconfig
 	default = matching
 [credential]
 	helper = store
-
+*****************************************
 git diff
+*****************************************
+当删掉~/.gitconfig后 user/passwd/email 需要重设
+当已经add/commit后, 改了user/passwd/email 需要撤销add/commit 否则push不了
+*****************************************
+撤销add
+git status 查看当下更新的文件
+git reset HEAD 表示撤销上次add的所有文件
+git reset HEAD dir/dir/test.php 撤销指定文件
+
+撤销commit
+git reset --soft HEAD^  //这样就成功的撤销了你上次的commit（仅仅是撤回commit操作，代码仍然保留）
