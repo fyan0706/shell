@@ -1,0 +1,10 @@
+files:
+[root@ ~/.ssh]$ ls
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+[root@ ~/.ssh]$ ls ~/.ssh
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+[root@ ~/.ssh]$ ls ~/.gitconfig 
+/root/.gitconfig
+[root@ ~/.ssh]$ ls ~/.bashrc 
+/root/.bashrc
+
