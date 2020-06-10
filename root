@@ -5,6 +5,6 @@ authorized_keys  id_rsa  id_rsa.pub  known_hosts
 authorized_keys  id_rsa  id_rsa.pub  known_hosts
 [root@ ~/.ssh]$ ls ~/.gitconfig 
 /root/.gitconfig
-[root@ ~/.ssh]$ ls ~/.bashrc 
+[root@ ~/.ssh]$ ls ~/.bashrc   #注意.bashrc是由~/.bash_profile调用的 
 /root/.bashrc
 
