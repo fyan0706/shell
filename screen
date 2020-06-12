@@ -1,0 +1,8 @@
+screen
+在当前screen窗口中键入C-a c，即Ctrl键+a键，之后再按下c键
+键入C-a d，Screen会给出detached提示 : 暂时中断会话
+# screen -ls
+There is a screen on:
+        16582.pts-1.tivf06      (Detached)
+1 Socket in /tmp/screens/S-root.
+重新连接会话：# screen -r 16582
