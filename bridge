@@ -1,0 +1,21 @@
+qemu启动参数加:-net nic,model=e1000,macaddr=52:54:00:34:56:23 -net tap,script=/etc/qemu-ifup.sh,downscript=no 
+              其中macaddr=52:54:00:34:56:23不一定需要
+qemu-ifup.sh:peth=ens33中的ens33改成你物理机器的网卡
+#!/usr/bin/bash                                                                                                                                                                                                                                                                                                                                                                                                        
+#
+bridge=br1
+peth=ens33
+dhclient -r
+brctl addbr $bridge
+if [ -n "$1" ]; then
+    ip link set $1 up
+    sleep 1
+    brctl addif $bridge $peth
+    ifconfig $peth 0
+    brctl addif $bridge $1
+    dhclient $bridge
+    [ $? -eq 0 ] && exit 0 || exit 1
+else
+    echo "Error: no interface specified."
+    exit 1
+fi
