@@ -5,3 +5,7 @@
 本地时间 → 硬件时间(date → hwclock):timedatectl set-local-rtc 1
 
 硬件时间 → 系统时间(dhwclock → date):hwclock --hctosys
+----------------------------------------
+有网络情况下只需要修改时区:
+timedatectl set-timezone Asia/Shanghai
+具体时区查找:ls /usr/share/zoneinfo/Asia/
