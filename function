@@ -1,0 +1,12 @@
+函数参数
+-------------------------------
+$ testfunc () { echo "$# parameters"; echo "$@"; }
+$ testfunc
+0 parameters
+
+$ testfunc a b c
+3 parameters
+a b c
+$ testfunc a "b c"
+2 parameters
+a b c
