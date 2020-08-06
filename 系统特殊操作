@@ -1,0 +1,3 @@
+CentOS
+1. 配自动启ip—右上角勾上connect automatically
+2. 开关服务用 systemctl
