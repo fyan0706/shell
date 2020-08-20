@@ -1,0 +1,49 @@
+https://blog.csdn.net/prike/article/details/50640318?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.nonecase
+
+
+配置
+安装完成后，请不要着急打开软件。需先进行配置。具体步骤如下：
+1.linux下的所有操作面向用户的都是文件操作，在对串口操作之前，我们应该先确认自己对该文件有没有读写权限。
+ls -l /dev/ttyUSB*
+linux下的usb串口命名为ttyUSB，运行上面命令，可以看到有几个设备挂载。
+我们这里是：
+crw-rw---- 1 root dialout 188, 0 Apr 10 17:10 /dev/ttyUSB0
+只有ttuUSB0.
+再用lsusb察看：
+$ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 008 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 009 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 005 Device 002: ID 046d:c05a Logitech, Inc. Optical Mouse M90
+Bus 007 Device 002: ID 046d:c31d Logitech, Inc. 
+Bus 004 Device 009: ID 067b:2303 Prolific Technology, Inc. PL2303 Serial Port
+
+usb 004正是我们挂上去的usb转串口线缆，使用的芯片是PL2303。
+但是正如上面显示，ttyUSB0这个设备是root所有的，所以，我们以普通用户身份打开minicom是没法访问该文件的。
+
+2.配置minicom的参数
+运行$ sudo minicom -s
+
+便进入了minicom的配置界面，使用上下键选择Serial port setup，回车。此时光标在“change which setting”后面停留，它的上面有如下菜单：
+Serial port setup [Enter]
++-------------------------------------------------------------+
+| A - Serial Device : /dev/ttyUSB0 |
+| B - Lockfile Location : /var/lock |
+| C - Callin Program : |
+| D - Callout Program -: |
+| E - Bps/Par/Bits : 115200 8N1 |
+| F - Hardware Flow Control : No |
+| G - Software Flow Control : No |
+| |
+| Change which setting? |
++-------------------------------------------------------------+
+我们只需输入上面对应的字母，就可以进如相应的菜单进行设置。设置完成，回车，光标会回到“change which setting”后面，如此重复。完成按回车返回主菜单即可。
+注意：如果沒有使用USB轉串口，而是直接使用串口，那麼Serial Device要配置爲/dev/ttyS0。
+
+返回主菜单后，选择“Save setup as df1”，将其保存为默认设置，然后选择 Exit推出。需退出后重新打开minicom，软件才会使用上述参数进行初始化。
