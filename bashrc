@@ -30,11 +30,14 @@ BLight_Gray='\033[1;37m'
 PS1='[\u@\h \[\e[36;40m\]\w\[\e[0m\]]\\$ '
 
 alias rm='rm -rf'
-alias cp='cp -i'
 alias mv='mv -i'
-alias ll='ls -lh'
+alias cp='cp -ru'
+alias ps="ps aux"
+alias ll="ls -lh"
+alias lt="ls -lht"
+alias kill="kill -9"
 
-# export
+# export xxx=yyy
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
