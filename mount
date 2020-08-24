@@ -9,3 +9,9 @@ UUID=96D8-50B3          /boot/efi               vfat    umask=0077,shortname=win
 UUID=a0739e6f-50eb-462f-abeb-e25ba06cbdd7 /mnt  ext4    defaults        1 1
 
 UUID查询:blkid
+-----------------------------
+vim /etc/fstab
+加入:
+UUID=d8709431-f365-4142-b41d-6364a82ca9ae /mnt	ext4	defaults	1 1
+其中UUID: 通过blkid查看
+例: /dev/sdc1: UUID="a0739e6f-50eb-462f-abeb-e25ba06cbdd7" TYPE="ext4" PARTUUID="e83ff011-d234-4fe7-bcc1-696f28471eee"
