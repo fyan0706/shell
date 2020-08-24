@@ -1,0 +1,106 @@
+mount 10T硬盘
+1.	改格式：parted
+fdisk默认只能格式小于2T的磁盘，我们得用parted 来的格式化
+[root@localhost ~]# parted /dev/sdb
+GNU Parted 3.1
+使用 /dev/sdb
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) p                                                                
+Model: Lenovo RAID 730-8i 1GB (scsi)
+Disk /dev/sdb: 10000GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start  End  Size  File system  Name  标志
+
+mkpart primary 1 100%   用这个
+(parted) mkpart                                                           
+分区名称？  []? sdb1                                                      
+文件系统类型？  [ext2]? ext4                                              
+起始点？ 0                                                                
+结束点？ 10.0TB                                                           
+警告: The resulting partition is not properly aligned for best performance.
+忽略/Ignore/放弃/Cancel? Ignore                                           
+错误: Error informing the kernel about modifications to partition /dev/sdb1 -- 设备或资源忙.
+This means Linux won't know about any changes you made to /dev/sdb1 until you reboot --
+so you shouldn't mount it or use it in any way before rebooting.
+忽略/Ignore/放弃/Cancel? Ignore                                           
+错误: Partition(s) 3 on /dev/sdb have been written, but we have been unable to inform the
+kernel of the change, probably because it/they are in use.  As a result, the old
+partition(s) will remain in use.  You should reboot now before making further changes.
+忽略/Ignore/放弃/Cancel? Ignore                                           
+(parted) p                                                                
+Model: Lenovo RAID 730-8i 1GB (scsi)
+Disk /dev/sdb: 10000GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start   End      Size     File system  Name  标志
+ 1      17.4kB  10000GB  10000GB               sdb1
+
+(parted) quit                                                             
+信息: You may need to update /etc/fstab.
+2.	格式化
+[root@localhost ~]# mkfs.ext4 /dev/sdb3 
+mke2fs 1.42.9 (28-Dec-2013)
+/dev/sdb3 is apparently in use by the system; will not make a 文件系统 here!
+[root@localhost ~]# mkfs.ext4 /dev/sdb3 
+mke2fs 1.42.9 (28-Dec-2013)
+/dev/sdb3 is apparently in use by the system; will not make a 文件系统 here!
+示/dev/sdb5  正在被使用。 /dev/sdb5 正在被DM管理，所以我们创建文件系统时提示报错，我们手工的移除，就可以正常的创建文件系统，操作如下：
+[root@localhost ~]# cat /proc/partitions 
+major minor  #blocks  name
+
+   8       32   31266648 sdc
+   8       33     204800 sdc1
+   8       34    1048576 sdc2
+   8       35   30011392 sdc3
+   8       16 9765624832 sdb
+   8       19 9764369408 sdb3
+   8        0 1952147456 sda
+   8        1 1952146432 sda1
+ 253        0   26877952 dm-0
+ 253        1    3129344 dm-1
+ 253        2    4194304 dm-2
+ 253        3 9707745280 dm-3
+ 253        4   52428800 dm-4
+  11        0    1048575 sr0
+[root@localhost ~]# dmsetup status
+rhel-home: 0 19415490560 linear 
+rhel-swap: 0 8388608 linear 
+rhel-root: 0 104857600 linear 
+centos-swap: 0 6258688 linear 
+centos-root: 0 53755904 linear 
+[root@localhost ~]# dmsetup remove_all
+[root@localhost ~]# dmsetup status
+centos-swap: 0 6258688 linear 
+centos-root: 0 53755904 linear 
+[root@localhost ~]# mkfs.ext4 /dev/sdb3 
+mke2fs 1.42.9 (28-Dec-2013)
+文件系统标签=
+OS type: Linux
+块大小=4096 (log=2)
+分块大小=4096 (log=2)
+Stride=64 blocks, Stripe width=64 blocks
+305139712 inodes, 2441092352 blocks
+122054617 blocks (5.00%) reserved for the super user
+第一个数据块=0
+Maximum filesystem blocks=4294967296
+74497 block groups
+32768 blocks per group, 32768 fragments per group
+4096 inodes per group
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, 
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968, 
+	102400000, 214990848, 512000000, 550731776, 644972544, 1934917632
+
+Allocating group tables: 完成                            
+正在写入inode表: 完成                            
+Creating journal (32768 blocks): 完成
+Writing superblocks and filesystem accounting information:            
+完成
+
+[root@localhost ~]#
+3.	Mount
