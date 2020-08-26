@@ -40,3 +40,18 @@ IEEE_8021X_INNER_AUTH_METHODS=GTC
 ----------------------------------------------
 qemu启动参数
 qemu-system-x86_64 -cpu host -enable-kvm -machine q35,accel=kvm,kernel_irqchip=split -m 3G -smp 4,sockets=1,cores=2,threads=2 -drive file=/home/yanf/mdev_aries/centos7.img,format=qcow2 -device intel-iommu,intremap=on,caching-mode=on -net nic,model=e1000 -net tap,script=/etc/qemu-ifup.sh -vnc :19 -serial file:/var/log/oss.log
+----------------------------------------------
+cat /etc/qemu-ifup.sh
+#!/usr/bin/bash
+#brctl addbr br0
+if [ -n "$1" ]; then
+    ip link set $1 up
+    brctl addif br0 $1
+    [ $? -eq 0 ] && exit 0 || exit 1
+else
+    echo "Error: no interface specified."
+    exit 1
+fi
+cat /etc/qemu-ifdown.sh 
+#!/usr/bin/bash
+brctl delif br0 $1
