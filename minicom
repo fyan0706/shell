@@ -59,7 +59,7 @@ log
 提示输入一个Capture的文件名，默认就是图中的minicom.cap，然后按一下回车，就可以将log信息保存到一个文件中了，这样遇到log相对较多也能抓取完整，也方便我们查看，谢谢。
 ----------------------------------------------
 输入自动化
-minicom -S minicom_bash.sh
+minicom -S minicom_bash.sh -C abc.log
 cat minicom_bash.sh 
 #! /usr/bin/bash
 # 所有的echo都是发送的命令
