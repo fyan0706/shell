@@ -53,3 +53,7 @@ git reset HEAD dir/dir/test.php 撤销指定文件
 
 撤销commit
 git reset --soft HEAD^  //这样就成功的撤销了你上次的commit（仅仅是撤回commit操作，代码仍然保留）
+**************************************
+gitlab删除自建branch
+登录网页
+project下有个branches 点进去 找到要删的branch, 旁边会有个垃圾桶
