@@ -1,0 +1,20 @@
+set tags=/home/Feng.Yan/work/repo/host-sdk-regression/npu-sdk/tags
+
+set number    
+set autoindent    
+set smartindent    
+set showmatch    
+set ruler    
+set tabstop=4    
+set shiftwidth=4
+set softtabstop=4
+set cindent    
+set nobackup    
+set clipboard+=unnamed    
+set hlsearch
+syntax on    
+au BufNewFile,BufRead *.hc set filetype=c
+
+set statusline=%F\ [%{&fenc}\ %{&ff}\ L%l/%L\ C%c]\ %=%{strftime('%Y-%m-%d\ %H:%M')}
+set laststatus=2
+
