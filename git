@@ -21,6 +21,15 @@ git config user.email
 git config --global user.name "abc(新的用户名)"
 git config --global user.email "abc@qq.com(新的邮箱)"
 git config --global user.password"123456(新的密码)"
+
+For just one repo:
+git config user.name "Your Name Here"
+git config user.email your@email.com
+
+For (global) default email (which is configured in your ~/.gitconfig):
+git config --global user.name "Your Name Here"
+git config --global user.email your@email.com
+
 弄掉密码
 git config --system --unset credential.helper
 重新存储密码
